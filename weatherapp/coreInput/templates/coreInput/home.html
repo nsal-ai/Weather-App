@@ -1,21 +1,31 @@
+{% load static %}
 <!doctype html>
-<html lang="en">
+
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet"  href="{% static 'style.css' %}" />
+    <script src= "{% static 'raindrops.js' %}" async defer></script>
     <title>Weather App</title>
     <style>
         * {
         margin: 0;
         font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, Monospace;
         box-sizing: border-box;
+        color: red;
         }
 
         #main {
+        min-width: 100%;
+        max-width: 100%;
         text-align: center;
         padding-top: 100px;
+        position: absolute;
+        z-index: auto;
+
         }
         input[type="text"]{
         width: 30%;
@@ -37,22 +47,38 @@
         form {
         margin-bottom: 20px;
         }
+        . page {
+        position: absolute;
+        }
     </style>
 </head>
 <body>
-<div id="main">
-    <h1>Find your weather forecast</h1>
-    <form method="GET">
-        <label for="city"></label>
-        <input type="text" name="city" id="city" value = "{{ request.GET.city }}" placeholder="Enter your city..."></br>
-        <input type="submit" value="Submit">
-    </form>
-    {% if weather %}
+    <!--<div class="canvas-holder">-->
+
+    <!--</div>-->
+<div class="page">
+
+    <div id="main">
+        <h1>Find your weather forecast</h1>
+        <form method="GET">
+            <label for="city"></label>
+            <input type="text" name="city" id="city" value="{{ request.GET.city }}"
+                   placeholder="Enter your city..."></br>
+            <input type="submit" value="Submit">
+        </form>
+        {% if weather %}
         <h3>{{ weather.region }}</h3>
         <h3>{{ weather.daytime }}</h3>
         <h3>{{ weather.status }}</h3>
         <h3>{{ weather.temp }}° C</h3>
-    {% endif %}
+        {% endif %}
+    </div>
+        <canvas id="canvas"></canvas>
 </div>
+
+
+
 </body>
 </html>
+
+

@@ -1,0 +1,14 @@
+
+
+  canvas#canvas {
+    position: relative;
+    background: #F5FFFA;
+    filter: blur(4px);
+  }
+
+  canvas#canvas {
+  display: inline;
+  z-index: -1;
+
+  }
+
